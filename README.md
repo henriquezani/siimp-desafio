@@ -1,70 +1,192 @@
-# Getting Started with Create React App
+# Desafio Siimp Sistemas
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+## Exercício 1
+Remover todas as vogais de uma  palavra.
+```javascript
+var input = inputValue
+ 
+const semVogais = input.replace(/[aeiou]/gi, '')
 
-### `yarn start`
+return semVogais
+```
+Esse foi o desafio mais fácil.
+Apenas usei a função replace para trocar as vogais da palavra que está na variável input.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Exercício 2
+Retornar a palavra que conter a maior quantidade de caracteres.
 
-### `yarn test`
+``` javascript
+const input = inputValue
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+const inputSplit = input.split(' ')
 
-### `yarn build`
+const palavraMaisLonga = inputSplit.sort((a, b) => {
+    return b.length - a.length
+})
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+return palavraMaisLonga[0]
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Não tive dificuldades em completar esse desafio. 
+Dividi o input em substrings usando o split e retornei como uma array.
+Depois usei a função sort para ordenar a array de maior para o menor a quantidade de caracteres de cada palavra. 
+Com isso o primeiro elemento da array é a palavra mais longa.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Exercício 3
+Retornar a soma de todos os dígitos.
 
-### `yarn eject`
+```javascript
+const input = inputValue
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+const inputSplit = String(input).split('')
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+let sum = 0
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+for (let i = 0; i < inputSplit.length; i++) {
+    sum += Number(inputSplit[i])
+}
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+return sum
+```
+Também não tive dificuldades em completar esse desafio.
+Transformei o input em string e depois usei o método split igual do exercício 2.
+Criei um for loop para somar cada elemento da array e guardar na variável sum.
 
-## Learn More
+## Exercício 4
+Listar todos os números do 1 até o número informado. No entanto: Se o número for divisível por 3, substitua o número da listagem pela palavra HELLO. Caso o número for divisível por 5, substitua o número da listagem pela palavra WORLD. Caso o número for divisível por ambos (3 e 5), substitua o
+número da listagem pelas palavras HELLO WORLD.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```javascript
+const input = inputValue
+       
+const numArr = []
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+for (let i = 1; i <= input; i++) {
+    numArr[i] = i
+}
+ 
+for (let i = 1; i <= input; i++) {
+    if (numArr[i] % 3 === 0 && numArr[i] % 5 === 0) {
+            numArr[i] = "HELLO WORLD"
+    }else if (numArr[i] % 5 === 0) {
+            numArr[i] = "WORLD"
+    
+    }else if (numArr[i] % 3 === 0) {
+            numArr[i] = "HELLO"
+    }
+}
+return numArr
+```
+Tive dificuldades no início mas depois consegui completar sem problemas. 
 
-### Code Splitting
+Criei um for loop para inicializar uma array em que o tamanho é o valor do input.
+Depois percorri a array usando for e dentro do loop usei um if statement para achar os números divisíveis por 3 ou 5.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Exercício 5
+Verificar se é um palíndromo.
 
-### Analyzing the Bundle Size
+```javascript
+const input = inputValue
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+if(input === ""){
+    return
+}
+    
+var re = /[\W_]/g;
+var lowRegStr = input.toLowerCase().replace(re, '')
+var reverseStr = lowRegStr.split('').reverse().join('')
+const isPalindrome = reverseStr === lowRegStr
+    
+if (isPalindrome) {
+    return "É um palíndromo"
+} else {
+    return "Não é um palíndromo"
+    }
+}
+```
+Demorei um pouco para entender de como eu iria solucionar o desafio mas depois de varias tentativas consegui achar a solução. 
 
-### Making a Progressive Web App
+Criei duas variáveis:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+LowRegStr: É o input com as palavras em lowerCase e sem espaço.
+ReverseStr: É a variavel LowRegStr só que envertido.
 
-### Advanced Configuration
+No final é só comparar as duas variáveis, se for igual é um palíndromo, se não, não é um palíndromo. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Exercício 6
+Verificar se a palavra e/ou frase inserida no campo de texto pode se tornar um palíndromo se UMA letra da palavrae/oufrase for removida.
 
-### Deployment
+```javascript
+      let input = inputValue
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+       var re = /[\W_]/g;
+       input = input.toLowerCase().replace(re, '')
 
-### `yarn build` fails to minify
+       var len = input.length
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+       let umaLetra = 0
+
+       for (var i = 0; i < len / 2; i++) {
+         if (input[i] !== input[len - 1 - i]) {
+
+           umaLetra =+ 1
+           console.log(umaLetra)
+         }
+       }
+
+      if (umaLetra === 1) {
+         return "Pode se tornar um palíndromo"
+       } else if (umaLetra > 1) {
+         return "Não é um palíndromo"
+       }
+       return "É um palíndromo"
+
+```
+Não consegui achar uma solução para esse desafio, com certeza foi o mais difícil entre os sete, tentei pesquisar na internet mas não entendi muito bem e preferi não fazer.
+
+Usei o mesmo raciocino lógico do exercício 5, que foi comparar caracter por caracter do input e input invertido, com isso, iria achar o número de caracteres que não deram match, achei que com esse número eu descobriria se a string pode se tornar um palíndromo, só que esse raciocínio está errado.
+
+## Exercício 7
+Retornar a soma de todos os números ENTRE os dois números digitados pelo usuário.
+
+```javascript
+
+          const input1 = inputValue
+          const input2 = inputValue2
+
+          const ifIsInterger = Number.isInteger(Number(input1))
+          const ifIsInterger2 = Number.isInteger(Number(input2))
+
+          if(!ifIsInterger && !ifIsInterger2 ){
+             return "Somente números inteiros serão testados."
+          }
+
+          if (input1 < input2) {
+            const high = Math.max(input1, input2)
+      
+            const low = Math.min(input1, input2)
+      
+            const sum = high * (high + 1) / 2 - (low - 1) * (low) / 2
+      
+            return sum
+      
+          } else if (input2 < input1) {
+            return 0
+      
+          } else if (input1 === input2) {
+            return input1
+          }
+        }
+```
+Nesse desafio tive que pesquisar na internet uma fórmula matemática para resolver.
+
+A fórmula: high(high + 1)/2 - (low - 1)(low)/2
+low: é o valor mais baixo entre o input1 e input2
+high: é o valor mais alto entre o input1 e input2  
+
+Esse talvez tenha sido o segundo mais difícil, não tava conseguindo pensar em uma fórmula matemática que resolveria esse problema e por isso tive que pesquisar na internet.
+
+
